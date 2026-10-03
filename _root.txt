@@ -1,0 +1,20 @@
+.env
+.env.example
+.gitignore
+client
+Electricity_Outage_Intelligent_System_Cameroon(1).pdf
+Electricity_Outage_Intelligent_System_MVP & Actors for analysis New.pdf
+Electricity_Outage_Intelligent_System_MVP & Actors for analysis.pdf
+index.html
+node_modules
+package-lock.json
+package.json
+public
+scripts
+server
+smoke1.txt
+tree.txt
+verify.txt
+_root.txt
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\client\src\main.jsx
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\client\src\styles.css

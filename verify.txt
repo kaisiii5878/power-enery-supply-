@@ -1,0 +1,6 @@
+v20.19.3
+server/store/memoryStore.js OK
+server/store/mysqlStore.js OK
+server/store/index.js OK
+server/store/seedReports.js OK
+server/config/env.js OK

@@ -1,0 +1,179 @@
+/**
+ * PowerWatch design tokens.
+ *
+ * The single source of truth for colour, type, space, radius, elevation and
+ * motion. Every other stylesheet consumes these variables, so the whole product
+ * can be re-themed from this file alone.
+ *
+ * Breakpoints (kept as literals in media queries, CSS variables cannot be used
+ * there) — 320 / 375 / 390 / 480 / 768 / 1024 / 1280 / 1440+  :
+ *   @media (min-width: 480px)   small phone landscape, large phone
+ *   @media (min-width: 768px)   tablet, shell leaves single-column mode
+ *   @media (min-width: 1024px)  desktop
+ *   @media (min-width: 1280px)  wide desktop
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Brand: PowerWatch navy + amber ---------------------------------- */
+  --brand-50: #edf6ff;
+  --brand-100: #d9ebff;
+  --brand-200: #bdd9ff;
+  --brand-300: #8cb8ff;
+  --brand-400: #5a96ff;
+  --brand-500: #2f76f6;
+  --brand-600: #1f5ed9;
+  --brand-700: #184bb2;
+  --brand-800: #173e8a;
+  --brand-900: #102b5f;
+  --brand-950: #091a3b;
+
+  --accent-50: #fffbe8;
+  --accent-100: #fff3c4;
+  --accent-200: #fce38a;
+  --accent-300: #f9d65d;
+  --accent-400: #f4c63d;
+  --accent-500: #edb51a;
+  --accent-600: #d99c05;
+  --accent-700: #ad7600;
+  --accent-800: #7a5300;
+  --accent-900: #4f3600;
+
+  /* ---- Neutrals -------------------------------------------------------- */
+  --neutral-0: #f8fafc;
+  --neutral-50: #edf3ff;
+  --neutral-100: #dfe8f7;
+  --neutral-200: #c3d1ea;
+  --neutral-300: #9ab0d5;
+  --neutral-400: #7089b8;
+  --neutral-500: #516d9b;
+  --neutral-600: #3d567d;
+  --neutral-700: #2b3f61;
+  --neutral-800: #172844;
+  --neutral-900: #0a162d;
+  --neutral-950: #050d1d;
+
+  /* ---- Semantic feedback (meaning is fixed product-wide) --------------- */
+  --success: #74d5a5;
+  --success-bg: rgba(34, 197, 94, 0.12);
+  --success-border: rgba(110, 231, 183, 0.34);
+  --warning: #f7d469;
+  --warning-bg: rgba(245, 158, 11, 0.12);
+  --warning-border: rgba(251, 191, 36, 0.4);
+  --danger: #fca5a5;
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(248, 113, 113, 0.38);
+  --info: #8ab9ff;
+  --info-bg: rgba(59, 130, 246, 0.12);
+  --info-border: rgba(147, 197, 253, 0.42);
+  --neutral: #b9c7e0;
+  --neutral-bg: rgba(148, 163, 184, 0.12);
+  --neutral-border: rgba(148, 163, 184, 0.25);
+
+  /* ---- Severity ramp (always paired with a text label) ----------------- */
+  --sev-low: #8ab9ff;
+  --sev-low-bg: rgba(96, 165, 250, 0.12);
+  --sev-low-border: rgba(147, 197, 253, 0.35);
+  --sev-medium: #f7d469;
+  --sev-medium-bg: rgba(245, 158, 11, 0.12);
+  --sev-medium-border: rgba(251, 191, 36, 0.38);
+  --sev-high: #fbbf75;
+  --sev-high-bg: rgba(249, 115, 22, 0.12);
+  --sev-high-border: rgba(251, 146, 60, 0.38);
+  --sev-critical: #fca5a5;
+  --sev-critical-bg: rgba(239, 68, 68, 0.12);
+  --sev-critical-border: rgba(248, 113, 113, 0.4);
+
+  /* ---- Surfaces & text ------------------------------------------------- */
+  --canvas: #08172c;
+  --surface: #0f1f3d;
+  --surface-sunken: #0b1830;
+  --surface-chrome: #102b5f;
+  --surface-chrome-deep: #091a3b;
+  --surface-overlay: rgba(5, 12, 22, 0.72);
+
+  --border: rgba(148, 163, 184, 0.22);
+  --border-strong: rgba(157, 184, 226, 0.36);
+
+  --text-strong: #edf6ff;
+  --text: #dfeafc;
+  --text-muted: #a7bbd8;
+  --text-subtle: #7d93ba;
+  --text-on-brand: #061828;
+  --text-chrome: #edf6ff;
+  --text-chrome-muted: #b9d0f0;
+
+  /* ---- Focus ----------------------------------------------------------- */
+  --focus-ring: 0 0 0 3px rgba(107, 170, 255, 0.4);
+  --focus-ring-danger: 0 0 0 3px rgba(248, 113, 113, 0.34);
+
+  /* ---- Typography ------------------------------------------------------ */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, monospace;
+
+  --size-display: 1.875rem;
+  --size-title: 1.4375rem;
+  --size-section: 1.0625rem;
+  --size-card: 0.9375rem;
+  --size-body: 0.9375rem;
+  --size-sm: 0.8125rem;
+  --size-caption: 0.75rem;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-body: 1.6;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---- Spacing scale (4px base) ---------------------------------------- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* ---- Radius (kept modest: no pill-shaped cards) ---------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* ---- Elevation ------------------------------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(5, 12, 22, 0.4);
+  --shadow-sm: 0 2px 8px rgba(5, 12, 22, 0.45);
+  --shadow-md: 0 10px 22px rgba(5, 12, 22, 0.5);
+  --shadow-lg: 0 18px 38px rgba(5, 12, 22, 0.58);
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 260ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --sidebar-w: 244px;
+  --shell-max: 1440px;
+  --topbar-h: 60px;
+  --bottomnav-h: 62px;
+  --tap-min: 44px;
+  --content-pad: var(--space-4);
+
+  /* ---- Z-index --------------------------------------------------------- */
+  --z-map-overlay: 500;
+  --z-sticky: 800;
+  --z-nav: 900;
+  --z-drawer: 1000;
+  --z-modal: 1100;
+  --z-toast: 1200;
+}

@@ -9,7 +9,17 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "serve": "concurrently \"node server/index.js\" \"vite preview --host 0.0.0.0\"",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "migrate": "node server/database/migrate.js",
+    "migrate:list": "node server/database/migrate.js --list",
+    "seed": "node server/database/seed.js",
+    "seed:reset": "node server/database/seed.js --reset",
+    "test": "node --test server/tests",
+    "test:watch": "node --test --watch server/tests",
+    "test:client": "node --test client/tests",
+    "test:postgres": "node --test server/tests/postgresStore.test.js",
+    "audit:store": "node scripts/audit-store.js",
+    "audit:server": "node scripts/audit-duplicates.js server"
   },
   "dependencies": {
     "@maplibre/maplibre-gl-leaflet": "^0.1.4",
@@ -22,13 +32,14 @@
     "lucide-react": "^0.544.0",
     "maplibre-gl": "^6.11.2",
     "mysql2": "^3.14.5",
+    "pg": "^8.23.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.3.0",
     "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.18.4",
     "vite": "^7.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
-

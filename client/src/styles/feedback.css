@@ -1,0 +1,399 @@
+/**
+ * Feedback and states: alert, toast, modal, drawer, empty state, error state,
+ * loading state and skeletons.
+ */
+
+/* =======================================================================
+   Alert — inline, non-blocking message with a fixed semantic tone
+   ======================================================================= */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--neutral-border);
+  border-left-width: 3px;
+  border-radius: var(--radius-md);
+  background: var(--neutral-bg);
+  font-size: var(--size-sm);
+}
+
+.alert svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.alert__body {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.alert__title {
+  font-weight: var(--weight-semibold);
+  color: var(--text-strong);
+}
+
+.alert__text {
+  color: var(--text-muted);
+}
+
+.alert[data-tone="success"] {
+  border-color: var(--success-border);
+  border-left-color: var(--success);
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.alert[data-tone="warning"] {
+  border-color: var(--warning-border);
+  border-left-color: var(--warning);
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.alert[data-tone="danger"] {
+  border-color: var(--danger-border);
+  border-left-color: var(--danger);
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.alert[data-tone="info"] {
+  border-color: var(--info-border);
+  border-left-color: var(--info);
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+/* =======================================================================
+   Toast
+   ======================================================================= */
+
+.toast-region {
+  position: fixed;
+  z-index: var(--z-toast);
+  right: var(--space-4);
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  left: var(--space-4);
+  display: grid;
+  justify-items: end;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: min(380px, 100%);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-700);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--size-sm);
+  pointer-events: auto;
+  animation: toast-in var(--duration-slow) var(--ease);
+}
+
+.toast[data-tone="success"] {
+  border-left-color: var(--success);
+}
+
+.toast[data-tone="warning"] {
+  border-left-color: var(--warning);
+}
+
+.toast[data-tone="danger"] {
+  border-left-color: var(--danger);
+}
+
+.toast__title {
+  font-weight: var(--weight-semibold);
+  color: var(--text-strong);
+}
+
+.toast__text {
+  color: var(--text-muted);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .toast-region {
+    left: auto;
+    right: var(--space-6);
+    bottom: var(--space-6);
+  }
+}
+
+/* =======================================================================
+   Modal, confirm dialog and side drawer
+   ======================================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: var(--surface-overlay);
+  animation: fade-in var(--duration-base) var(--ease);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: min(560px, 100%);
+  max-height: calc(100vh - var(--space-8));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: modal-in var(--duration-slow) var(--ease);
+}
+
+.modal--wide {
+  width: min(760px, 100%);
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+.modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface-sunken);
+}
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  display: block;
+  padding: 0;
+  background: var(--surface-overlay);
+  animation: fade-in var(--duration-base) var(--ease);
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: drawer-in var(--duration-slow) var(--ease);
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* =======================================================================
+   Empty, error and loading states
+   ======================================================================= */
+
+.state {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.state__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  color: var(--text-subtle);
+}
+
+.state[data-tone="danger"] .state__icon {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.state[data-tone="info"] .state__icon {
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.state__title {
+  font-size: var(--size-card);
+  font-weight: var(--weight-semibold);
+  color: var(--text-strong);
+}
+
+.state__message {
+  max-width: 42ch;
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.state--compact {
+  padding: var(--space-5) var(--space-4);
+}
+
+/* =======================================================================
+   Spinner — for button actions and small areas
+   ======================================================================= */
+
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner--lg {
+  width: 26px;
+  height: 26px;
+  border-width: 3px;
+  color: var(--brand-700);
+}
+
+/* =======================================================================
+   Skeleton — for dashboards, lists, cards and tables
+   ======================================================================= */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--neutral-200);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.6), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton--text {
+  height: 12px;
+}
+
+.skeleton--title {
+  height: 18px;
+}
+
+.skeleton--card {
+  height: 84px;
+  border-radius: var(--radius-lg);
+}
+
+.skeleton--line {
+  height: 44px;
+}
+
+.skeleton-stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.skeleton-stack--cards {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.skeleton--w40 {
+  width: 40%;
+}
+
+.skeleton--w60 {
+  width: 60%;
+}
+
+.skeleton--w75 {
+  width: 75%;
+}
+

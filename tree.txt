@@ -1,0 +1,27 @@
+
+FullName                                                                            Length
+--------                                                                            ------
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\config\env.js                  3783
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\domain\clustering.js           4231
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\domain\geo.js                  2363
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\domain\incidentLifecycle.js    3281
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\domain\passwords.js            1506
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\http\auth.js                   2519
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\http\errors.js                 1466
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\http\tokens.js                 2493
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\services\adminService.js       5866
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\services\analyticsService.js   5334
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\services\authService.js        6144
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\services\incidentService.js   21481
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\index.js                 2342
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\memoryStore.js          17969
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\mysqlStore.js           16969
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\normalize.js             2588
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\seedIncidents.js         3560
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\store\seedReports.js           2640
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\index.js                      47327
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\server\schema.sql                    12149
+C:\Users\HP\Desktop\fac fac\power-enery-supply-\client\src\main.jsx                  61039
+
+
+

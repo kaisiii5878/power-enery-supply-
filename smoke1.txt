@@ -1,0 +1,38 @@
+{
+  "incidents": [
+    {
+      "id": 1,
+      "c": 8,
+      "sev": "low",
+      "r": 247,
+      "st": "pending_validation",
+      "qual": true
+    },
+    {
+      "id": 2,
+      "c": 6,
+      "sev": "low",
+      "r": 240,
+      "st": "under_intervention",
+      "qual": true
+    },
+    {
+      "id": 3,
+      "c": 4,
+      "sev": "low",
+      "r": 130,
+      "st": "validated",
+      "qual": true
+    },
+    {
+      "id": 4,
+      "c": 3,
+      "sev": "low",
+      "r": 72,
+      "st": "closed",
+      "qual": true
+    }
+  ],
+  "reports": 21,
+  "zones": 2
+}

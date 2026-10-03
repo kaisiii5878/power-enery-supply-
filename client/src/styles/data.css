@@ -1,0 +1,468 @@
+/**
+ * Data display: tables, list rows, timeline, tabs, pagination, progress steps,
+ * key/value lists, filter bar and search input.
+ */
+
+/* =======================================================================
+   Table / DataTable
+   Desktop: a real table. Small screens are handled in layouts.css so nothing
+   is squeezed until it becomes unreadable.
+   ======================================================================= */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  font-size: var(--size-sm);
+}
+
+.table caption {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.table thead th {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table thead th.is-numeric {
+  text-align: right;
+}
+
+.table tbody td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color var(--duration-fast) var(--ease);
+}
+
+.table tbody tr:hover {
+  background: var(--surface-sunken);
+}
+
+.table tbody tr[data-selected="true"] {
+  background: var(--brand-50);
+  box-shadow: inset 3px 0 0 var(--brand-700);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table .is-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.table .is-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* =======================================================================
+   List row — queues, feeds and incident lists
+   ======================================================================= */
+
+.list {
+  display: grid;
+}
+
+.list__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
+  transition: background-color var(--duration-fast) var(--ease);
+}
+
+.list__row:last-child {
+  border-bottom: 0;
+}
+
+.list__row:hover {
+  background: var(--surface-sunken);
+}
+
+.list__row[data-selected="true"] {
+  background: var(--brand-50);
+  box-shadow: inset 3px 0 0 var(--brand-700);
+}
+
+.list__main {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.list__title {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-strong);
+}
+
+.list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.list__meta svg {
+  flex: 0 0 auto;
+}
+
+.list__aside {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* =======================================================================
+   Tabs
+   ======================================================================= */
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  padding: var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs__tab {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  transition: background-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease);
+}
+
+.tabs__tab:hover {
+  color: var(--brand-800);
+}
+
+.tabs__tab[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--brand-900);
+  box-shadow: var(--shadow-xs);
+}
+
+/* =======================================================================
+   Pagination
+   ======================================================================= */
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--surface-sunken);
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.pagination__pages button {
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+}
+
+.pagination__pages button[aria-current="page"] {
+  border-color: var(--brand-800);
+  background: var(--brand-800);
+  color: var(--text-on-brand);
+}
+
+.pagination__pages button:hover:not([aria-current="page"]):not(:disabled) {
+  border-color: var(--brand-400);
+  color: var(--brand-800);
+}
+
+/* =======================================================================
+   Timeline — done / current / upcoming must stay visually distinct
+   ======================================================================= */
+
+.timeline {
+  display: grid;
+}
+
+.timeline__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+}
+
+.timeline__step:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__step::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  left: 11px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline__step[data-state="done"]::before {
+  background: var(--brand-500);
+}
+
+.timeline__step:last-child::before {
+  display: none;
+}
+
+.timeline__dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-subtle);
+}
+
+.timeline__step[data-state="done"] .timeline__dot {
+  border-color: var(--brand-600);
+  background: var(--brand-600);
+  color: var(--text-on-brand);
+}
+
+.timeline__step[data-state="current"] .timeline__dot {
+  border-color: var(--brand-700);
+  background: var(--surface);
+  color: var(--brand-800);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+
+.timeline__step[data-state="rejected"] .timeline__dot {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--text-on-brand);
+}
+
+.timeline__label {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+}
+
+.timeline__step[data-state="done"] .timeline__label,
+.timeline__step[data-state="current"] .timeline__label,
+.timeline__step[data-state="rejected"] .timeline__label {
+  color: var(--text-strong);
+}
+
+.timeline__when {
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+/* =======================================================================
+   Progress steps (guided flows)
+   ======================================================================= */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.steps__item {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.steps__bar {
+  flex: 1 1 auto;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--border);
+}
+
+.steps__item[data-state="done"] .steps__bar,
+.steps__item[data-state="current"] .steps__bar {
+  background: var(--brand-600);
+}
+
+.steps__text {
+  flex: 0 0 auto;
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.steps__item[data-state="current"] .steps__text {
+  color: var(--brand-800);
+}
+
+/* =======================================================================
+   Key / value list
+   ======================================================================= */
+
+.kv {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.kv__row {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.kv__key {
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+}
+
+.kv__value {
+  margin: 0;
+  font-size: var(--size-sm);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 480px) {
+  .kv--inline .kv__row {
+    grid-template-columns: 148px 1fr;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+}
+
+/* =======================================================================
+   Filter bar + search input
+   ======================================================================= */
+
+.filter-bar {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-bar__grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+}
+
+.filter-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.search svg {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+
+.search .control {
+  padding-inline-start: calc(var(--space-8) + 2px);
+}
+
+/* =======================================================================
+   Legend
+   ======================================================================= */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+}
+
+.legend__swatch {
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgb(15 23 42 / 0.15);
+  border-radius: var(--radius-full);
+}
+
+

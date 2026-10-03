@@ -1,0 +1,245 @@
+/**
+ * Base layer: reset, document defaults and the typography hierarchy.
+ * Class names here map 1:1 to the documented type scale.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  color: var(--text);
+  background: var(--canvas);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Typography hierarchy ---------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.display {
+  font-size: var(--size-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.015em;
+}
+
+.page-title {
+  font-size: var(--size-title);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.section-title {
+  font-size: var(--size-section);
+  font-weight: var(--weight-semibold);
+}
+
+.card-title {
+  font-size: var(--size-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.body-text {
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+  color: var(--text);
+}
+
+.text-secondary {
+  font-size: var(--size-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}
+
+.text-caption {
+  font-size: var(--size-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}
+
+.text-label {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.eyebrow {
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.text-strong {
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  letter-spacing: -0.01em;
+}
+
+/* ---- Links ------------------------------------------------------------- */
+
+a {
+  color: var(--brand-700);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--brand-900);
+}
+
+/* ---- Media & form resets ---------------------------------------------- */
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* ---- Focus visibility --------------------------------------------------
+   One consistent focus treatment for every interactive element, including
+   keyboard-only users navigating the map toolbars and bottom navigation. */
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-700);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Screen-reader only ------------------------------------------------ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-toast);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--brand-800);
+  color: var(--text-on-brand);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ---- Scrollbars -------------------------------------------------------- */
+
+:where(.scroll-area) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+:where(.scroll-area)::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+:where(.scroll-area)::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: var(--radius-full);
+  background-clip: content-box;
+  background-color: var(--neutral-300);
+}
+
+/* ---- Reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

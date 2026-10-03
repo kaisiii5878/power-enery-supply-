@@ -1,0 +1,546 @@
+/**
+ * Component layer — the reusable UI system.
+ *
+ * Every class here is consumed by exactly one React primitive in
+ * `client/src/components/ui`, so a screen never invents its own button,
+ * card or badge styling.
+ */
+
+/* =======================================================================
+   Button
+   Variants: primary · secondary · outline · ghost · danger · icon
+   Modifiers: .btn--sm .btn--lg .btn--block
+   ======================================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  padding: 0 var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+}
+
+.btn--primary {
+  background: var(--brand-800);
+  border-color: var(--brand-800);
+  color: var(--text-on-brand);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--brand-900);
+  border-color: var(--brand-900);
+}
+
+.btn--secondary {
+  background: var(--brand-50);
+  border-color: var(--brand-200);
+  color: var(--brand-900);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--brand-100);
+  border-color: var(--brand-300);
+}
+
+.btn--outline {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn--outline:hover:not(:disabled) {
+  border-color: var(--brand-600);
+  color: var(--brand-800);
+  background: var(--brand-50);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--brand-800);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--brand-50);
+}
+
+.btn--danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--text-on-brand);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #991b1b;
+  border-color: #991b1b;
+}
+
+.btn--danger-ghost {
+  background: transparent;
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+.btn--danger-ghost:hover:not(:disabled) {
+  background: var(--danger-bg);
+}
+
+.btn--sm {
+  min-height: 34px;
+  padding: 0 var(--space-3);
+  font-size: var(--size-caption);
+}
+
+.btn--lg {
+  min-height: 50px;
+  padding: 0 var(--space-6);
+  font-size: var(--size-body);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--icon {
+  width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0;
+}
+
+.btn--icon.btn--sm {
+  width: 34px;
+  min-height: 34px;
+}
+
+/* =======================================================================
+   Form controls
+   ======================================================================= */
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.field__label {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.field__required {
+  margin-inline-start: 2px;
+  color: var(--danger);
+}
+
+.field__hint {
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-medium);
+  color: var(--danger);
+}
+
+.field__error svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.control {
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--size-body);
+  transition: border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease);
+}
+
+.control::placeholder {
+  color: var(--text-subtle);
+}
+
+.control:hover:not(:disabled):not([aria-invalid="true"]) {
+  border-color: var(--neutral-400);
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--brand-600);
+  box-shadow: var(--focus-ring);
+}
+
+.control:disabled,
+.control[aria-disabled="true"] {
+  background: var(--neutral-100);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.control[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.control[aria-invalid="true"]:focus {
+  box-shadow: var(--focus-ring-danger);
+}
+
+textarea.control {
+  min-height: 96px;
+  padding-block: var(--space-3);
+  line-height: var(--leading-body);
+  resize: vertical;
+}
+
+select.control {
+  appearance: none;
+  padding-inline-end: var(--space-8);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  font-size: var(--size-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.checkbox input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--brand-700);
+}
+
+/* =======================================================================
+   Card, surface and layout helpers
+   ======================================================================= */
+
+.card,
+.panel,
+.surface,
+[data-card] {
+  background: linear-gradient(180deg, rgba(16, 43, 95, 0.95), rgba(10, 22, 45, 0.96));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card--pad {
+  padding: var(--space-4);
+}
+
+.card--interactive {
+  transition: border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+}
+
+.card--interactive:hover {
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.card__header--plain {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.card__body {
+  padding: var(--space-4);
+}
+
+.card__footer {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--surface-sunken);
+}
+
+.card__title {
+  font-size: var(--size-card);
+  font-weight: var(--weight-semibold);
+  color: var(--text-strong);
+}
+
+.card__subtitle {
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stack--sm {
+  gap: var(--space-2);
+}
+
+.stack--lg {
+  gap: var(--space-6);
+}
+
+.inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* =======================================================================
+   Badge, status badge, severity badge
+   Tone is applied through data attributes so the same primitive serves
+   status, severity and generic labels.
+   ======================================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px var(--space-2);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-sm);
+  background: var(--neutral-bg);
+  color: var(--neutral);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge svg {
+  flex: 0 0 auto;
+}
+
+.badge[data-tone="brand"] {
+  border-color: var(--brand-200);
+  background: var(--brand-50);
+  color: var(--brand-900);
+}
+
+.badge[data-tone="success"] {
+  border-color: var(--success-border);
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.badge[data-tone="warning"] {
+  border-color: var(--warning-border);
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.badge[data-tone="danger"] {
+  border-color: var(--danger-border);
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.badge[data-tone="info"] {
+  border-color: var(--info-border);
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.badge--solid {
+  border-color: transparent;
+  background: var(--brand-800);
+  color: var(--text-on-brand);
+}
+
+/* The severity meter repeats the level in shape, not only in colour. */
+.severity-meter {
+  display: inline-flex;
+  gap: 2px;
+  margin-inline-start: var(--space-1);
+}
+
+.severity-meter i {
+  width: 4px;
+  height: 10px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.severity-meter i[data-on="true"] {
+  opacity: 1;
+}
+
+.count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--danger);
+  color: var(--text-on-brand);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+/* =======================================================================
+   Stat card
+   ======================================================================= */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.stat__icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.stat__icon[data-tone="success"] {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.stat__icon[data-tone="warning"] {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.stat__icon[data-tone="danger"] {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.stat__icon[data-tone="info"] {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.stat__label {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+}
+
+.stat__value {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 1.5rem;
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__unit {
+  margin-inline-start: 3px;
+  font-size: var(--size-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+}
+
+.stat--interactive {
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+}
+
+.stat--interactive:hover {
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.link,
+a {
+  color: var(--accent-300);
+}
+
+.link:hover,
+a:hover {
+  color: var(--accent-200);
+}
